@@ -7,11 +7,13 @@ package com.spring.sgff.service;
 
 import com.spring.sgff.models.Funcionarios;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author rosen
  */
+
 public interface SgffService {
     List<Funcionarios> findAll();
     Funcionarios findById(long id);
