@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://thymeleaf.org">
     <head>
         <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
         <meta charset="UTF-8">
@@ -23,19 +23,28 @@ and open the template in the editor.
 
 
         <section>
-            <div class="container" style="width:60%; padding-bottom:30px;">
+            <div class="container" style="width:90%; padding-bottom:30px;">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">#</th>
-                            <th scope="col">#</th>
-                            <th scope="col">#</th>
+                            <th scope="col">Identificação</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">RG</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Data de Admissão</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
+                        <tr  th:each="funcionario: ${funcionarios}">
+                            <th scope="col"><span th:text="${funcionario.id}"></span></th>
+                            <td><span th:text="${funcionario.cpf}"></span></td>
+                            <td><span th:text="${funcionario.nome}"></span></td>
+                            <td><span th:text="${funcionario.rg}"></span></td>
+                            <td><span th:text="${funcionario.cargo}"></span></td>
+                            <td><span th:text="${funcionario.email}"></span></td>
+                            <td><span th:text="${funcionario.dataAdmissao}"></span></td>
                         </tr>
                     </tbody>
                 </table>
