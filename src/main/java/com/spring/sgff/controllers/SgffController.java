@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -44,8 +45,8 @@ public class SgffController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("funcionarioDetails");
 
-        //Funcionarios funcionario = sgffservice.findById(id);
-        //mv.addObject("funcionario", funcionario);
+        Funcionarios funcionario = sgffservice.findById(id);
+        mv.addObject("funcionario", funcionario);
 
         return mv;
     }
