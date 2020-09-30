@@ -7,9 +7,13 @@ package com.spring.sgff.controllers;
 
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.service.SgffService;
+import java.time.LocalDate;
 import java.util.List;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,4 +55,28 @@ public class SgffController {
         return mv;
     }
 
+    @RequestMapping(value = "/newfuncionario/", method = RequestMethod.GET)
+    public String getFuncionarioForm() {
+        return "FuncionarioForm";
+    }
+
+    @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
+    public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os dados digitados");
+            return "redirect:/newfuncionario/";
+        }
+
+        funcionario.setDataAdmissao(LocalDate.now());
+
+        sgffservice.save(funcionario);
+
+        return "redirect:/funcionarios/";
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:login";
+    }
 }
