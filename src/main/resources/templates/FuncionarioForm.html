@@ -1,0 +1,62 @@
+
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <header>
+
+            <!-- As a heading -->
+            <nav class="navbar navbar-light bg-light">
+                <a href="../funcionarios/"><span class="navbar-brand mb-0 h1">Funcionário</span></a>
+                <a href="logout">Log out?</a>
+            </nav>
+        </header>
+
+
+        <section>
+            <div class="container" style="width:90%; padding-bottom:30px;">
+                <nav class="breadcumb">
+                    <ol class="breadcumb" style="background-color: white; padding-left: 0px;">
+                        <li class="breadcumb-item" aria-current="page"><a href="/funcionarios">Funcionário</a></li>
+                        <li class="breadcumb-item active" aria-current="page">Cadastrar Funcionário</li>
+                    </ol>
+                </nav>
+                <th:block th:include="mensagemValidacao"></th:block>
+                <div>
+                    <form method="POST">
+                        <div class="form group">
+                            <input type="text" class="form-control" name="nome" placeholder="nome">
+                        </div>
+                        <div class="form group">
+                            <input type="email" class="form-control" name="email" placeholder="email">
+                        </div>
+                        <div class="form group">
+                            <input type="text" class="form-control" name="cpf" placeholder="cpf">
+                        </div>
+                        <div class="form group">
+                            <input type="text" class="form-control" name="rg" placeholder="rg">
+                        </div>
+                        <div class="form group">
+                            <input type="text" class="form-control" name="cargo" placeholder="cargo">
+                        </div>
+                         <div class="form group">
+                            <input type="text" class="form-control" name="dataAdmissao" placeholder="dataAdmissao">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <a href="/funcionarios" class="btn btn-danger">Cancelar</a>
+                    </form>
+                </div>
+
+            </div>
+
+
+        </section>
+    </body>
+</html>
