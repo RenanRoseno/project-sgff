@@ -1,13 +1,15 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.spring.sgff.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
-import java.util.UUID;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -16,33 +18,32 @@ import javax.validation.constraints.NotBlank;
  *
  * @author rosen
  */
-
-@Entity
-@Table(name = "Funcionarios")
+@Entity 
+@Table(name="Funcionarios")
 
 public class Funcionarios {
-
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NotBlank
-    private String nome;
-
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String rg;
-
+    
     @NotBlank
     private String cpf;
-
-    @Column(name = "data_admissao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    
+    @NotBlank
+    private String rg;
+         
+    @NotBlank
+    private String nome;
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
     private LocalDate dataAdmissao;
-
+    
     private int cargo;
-
+    
+    @NotBlank
+    private String email;
+    
     public Long getId() {
         return id;
     }
@@ -98,4 +99,9 @@ public class Funcionarios {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+
+    
+    
+    
 }
