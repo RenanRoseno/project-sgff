@@ -3,7 +3,6 @@ package com.spring.sgff.service;
 
 import com.spring.sgff.models.Funcionarios;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -13,9 +12,9 @@ import java.util.UUID;
 public interface SgffService {
     List<Funcionarios> findAll();
 
-    Funcionarios findById(UUID id);
+    Funcionarios findById(Long id);
 
     Funcionarios save(Funcionarios funcionario);
 
-    void deleteById(UUID id);
+    void deleteById(Long id);
 }

@@ -34,7 +34,6 @@ and open the template in the editor.
                             <th scope="col">Cargo</th>
                             <th scope="col">Email</th>
                             <th scope="col">Data de Admissão</th>
-                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,9 +45,6 @@ and open the template in the editor.
                             <td><span th:text="${funcionario.cargo}"></span></td>
                             <td><span th:text="${funcionario.email}"></span></td>
                             <td><span th:text="${funcionario.dataAdmissao}"></span></td>
-                            <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}"><h5>ver</h5></a></td>
-                       
-                            
                         </tr>
                     </tbody>
                 </table>

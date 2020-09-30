@@ -23,10 +23,7 @@ import javax.validation.constraints.NotBlank;
 public class Funcionarios {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
 
     @NotBlank
     private String nome;
@@ -46,11 +43,11 @@ public class Funcionarios {
 
     private int cargo;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

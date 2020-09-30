@@ -12,7 +12,5 @@ import com.spring.sgff.models.Funcionarios;
  */
 @Repository
 public interface SgffRepository extends JpaRepository<Funcionarios, Long> {
-    public Funcionarios findById(UUID id);
-
-    void deleteById(UUID id);
+   
 }

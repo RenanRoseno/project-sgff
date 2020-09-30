@@ -5,7 +5,6 @@ import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.repository.SgffRepository;
 import com.spring.sgff.service.SgffService;
 import java.util.List;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +25,8 @@ public class SgffServiceImpl implements SgffService {
     }
 
     @Override
-    public Funcionarios findById(UUID id) {
-        return sgffRepository.findById(id);
+    public Funcionarios findById(Long id) {
+        return sgffRepository.findById(id).get();
     }
 
     @Override
@@ -36,7 +35,7 @@ public class SgffServiceImpl implements SgffService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         sgffRepository.deleteById(id);
     }
 
