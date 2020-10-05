@@ -30,6 +30,12 @@ public class SgffController {
     @Autowired
 
     SgffService sgffservice;
+    
+    @RequestMapping(value = "/registrarponto/{param}", method = RequestMethod.POST)
+    public String registrarPonto(@PathVariable("id") String param){
+        return "redirect:/";
+    }
+
 
     @RequestMapping(value = "/funcionarios", method = RequestMethod.GET)
 
