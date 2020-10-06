@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,31 +43,39 @@ public class SgffController {
 
     // Registrar Ponto
     @RequestMapping(value = "/registrarponto/", method = RequestMethod.GET)
-    public String registrarPonto() {
-        //Funcionarios funcionario = sgffservice.findById(id);
-        Ponto p1 = new Ponto();
-        Calendar data = Calendar.getInstance();
-        int hora = data.get(Calendar.HOUR_OF_DAY);
-        int min = data.get(Calendar.MINUTE);
-        int seg = data.get(Calendar.SECOND);
+    public String registrarPonto(@RequestParam("parametro") String parametro, RedirectAttributes attributes) {
 
-        String horaS = (hora < 10) ? "0" + Integer.toString(hora) : Integer.toString(hora);
-        String minutoS = (hora < 10) ? "0" + Integer.toString(min) : Integer.toString(min);
-        String segundoS = (hora < 10) ? "0" + Integer.toString(seg) : Integer.toString(seg);
+        Funcionarios funcionario = sgffservice.findByCpf(parametro);
 
-        p1.setData(LocalDate.now());
+        if (!(funcionario == null)) {
+            Ponto p1 = new Ponto();
+            Calendar data = Calendar.getInstance();
+            int hora = data.get(Calendar.HOUR_OF_DAY);
+            int min = data.get(Calendar.MINUTE);
+            int seg = data.get(Calendar.SECOND);
 
-        if (hora < 17) {
-            p1.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
-            p1.setHorarioSaida("123123");
-        } else {
-            p1.setHorarioSaida(horaS);
+            String horaS = (hora < 10) ? "0" + Integer.toString(hora) : Integer.toString(hora);
+            String minutoS = (hora < 10) ? "0" + Integer.toString(min) : Integer.toString(min);
+            String segundoS = (hora < 10) ? "0" + Integer.toString(seg) : Integer.toString(seg);
+
+            p1.setData(LocalDate.now());
+
+            if (hora < 17) {
+                p1.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
+                p1.setHorarioSaida("-");
+            } else {
+                p1.setHorarioSaida(horaS + ":" + minutoS + ":" + segundoS);
+            }
+            p1.setId_funcionario(funcionario.getId());
+            p1.setFalta(0);
+
+            pontoRepository.save(p1);
+            attributes.addFlashAttribute("mensagem", "Ok");
+            return "redirect:/";
         }
-        p1.setId_funcionario((long)1123214);
-        p1.setFalta(0);
-        
-        pontoRepository.save(p1);
-        return "redirect:/";
+
+        attributes.addFlashAttribute("mensagem", "Funcionário inválido");
+        return "redirect:/funcionarios";
     }
 
     // Rota de que contém a lista de todos os funcionários
