@@ -6,6 +6,7 @@
 package com.spring.sgff.service;
 
 import com.spring.sgff.models.Funcionarios;
+import com.spring.sgff.models.Ponto;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
