@@ -44,4 +44,9 @@ public class SgffServiceImpl implements SgffService {
         sgffRepository.deleteById(id);
     }
 
+    @Override
+    public Funcionarios findByCpf(String cpf) {
+       return sgffRepository.findByCpf(cpf);
+    }
+
 }
