@@ -18,32 +18,32 @@ import javax.validation.constraints.NotBlank;
  *
  * @author rosen
  */
-@Entity 
-@Table(name="Funcionarios")
+@Entity
+@Table(name = "funcionarios")
 
 public class Funcionarios {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotBlank
     private String cpf;
-    
+
     @NotBlank
     private String rg;
-         
+
     @NotBlank
     private String nome;
-    
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dataAdmissao;
-    
+
     private int cargo;
-    
+
     @NotBlank
     private String email;
-    
+
     public Long getId() {
         return id;
     }
@@ -99,9 +99,5 @@ public class Funcionarios {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
-    
-    
-    
 }

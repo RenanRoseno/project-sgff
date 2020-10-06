@@ -16,6 +16,10 @@ import org.springframework.stereotype.Service;
 
 public interface SgffService {
     List<Funcionarios> findAll();
+
     Funcionarios findById(long id);
+
     Funcionarios save(Funcionarios funcionario);
+
+    void deleteFuncionario(long id);
 }
