@@ -6,6 +6,7 @@
 package com.spring.sgff.service.serviceimpl;
 
 import com.spring.sgff.models.Funcionarios;
+import com.spring.sgff.models.Ponto;
 import com.spring.sgff.repository.SgffRepository;
 import com.spring.sgff.service.SgffService;
 import java.util.List;
