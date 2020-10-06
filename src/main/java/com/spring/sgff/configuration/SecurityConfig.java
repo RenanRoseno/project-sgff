@@ -21,7 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] AUTH_LIST = {"/"}; 
+    private static final String[] AUTH_LIST = {"/", "/registrarponto/"}; 
 
 
     @Override
