@@ -3,6 +3,8 @@
     <head>
         <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/1.5.2.js"></script>
+        <script type="text/javascript" src="js/jquery.maskedinput-1.3.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
 
@@ -16,10 +18,10 @@
                 border: none;
             }
             #saudacao{
-                 font-size: 30px;
+                font-size: 30px;
             }
-            
-            
+
+
         </style>
         <script>
             function relogio() {
@@ -27,12 +29,12 @@
                 let hora = data.getHours();
                 let minuto = data.getMinutes();
                 let segundos = data.getSeconds();
-                
-                if(hora > 12){
+
+                if (hora > 12) {
                     document.getElementById("saudacao").value = "Boa Tarde!";
-                }else if(hora > 18  && hora < 23){
+                } else if (hora > 18 && hora < 23) {
                     document.getElementById("saudacao").value = "Boa noite!";
-                }else{
+                } else {
                     document.getElementById("saudacao").value = "Bom dia!";
                 }
                 hora = (hora < 10) ? "0" + hora : hora;
@@ -54,19 +56,31 @@
                 <a href="#" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e Frequência</a>
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/login">Entrar</a>
+                        <a class="nav-link" href="/funcionarios">Entrar</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
     <center>
-        <div class="container col-md-10">
-            <input type="text" id="saudacao" value="Boa Tarde" disabled><br>
-        <input type="text" id="rel" disabled><br><br>
-        <input type="text" class="form-control col-md-4"placeholder="Insira CPF ou número de cadastro"><br>
-        <button type="submit" class="btn btn-primary" style="background-color:DarkSlateGray; border:none; height: 50px;"> Registrar ponto </button>
-        </div>
+        <section>
+            <div class="container col-md-10">
+                <th:block th:include="mensagemValidacao"></th:block>
+                <form method="GET" action="/registrarponto/">
+                    <input type="text" id="saudacao" value="Boa Tarde" disabled><br>
+                    <input type="text" id="rel" disabled><br><br>
+                    <input type="text" class="form-control col-md-4" name="parametro" id="parametro" placeholder="Insira CPF ou número de cadastro"><br>
+                    <button type="submit" class="btn btn-primary" style="background-color:DarkSlateGray; border:none; height: 50px;"> Registrar ponto </button>
+                </form>
+            </div>
+        </section>
+
+
+        <script>
+            jQuery(function ($) {
+                //$("#parametro").mask("999.999.999-99");
+            });
+        </script>
     </body>
 
 </html>
