@@ -6,11 +6,15 @@
 package com.spring.sgff.controllers;
 
 import com.spring.sgff.models.Funcionarios;
+import com.spring.sgff.models.Ponto;
+import com.spring.sgff.repository.PontoRepository;
 import com.spring.sgff.service.SgffService;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import static jdk.nashorn.internal.runtime.Debug.id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -33,9 +37,35 @@ public class SgffController {
     @Autowired
     SgffService sgffservice;
 
+    @Autowired
+    PontoRepository pontoRepository;
+
     // Registrar Ponto
-    @RequestMapping(value = "/registrarponto/{param}", method = RequestMethod.POST)
-    public String registrarPonto(@PathVariable("id") String param) {
+    @RequestMapping(value = "/registrarponto/", method = RequestMethod.GET)
+    public String registrarPonto() {
+        //Funcionarios funcionario = sgffservice.findById(id);
+        Ponto p1 = new Ponto();
+        Calendar data = Calendar.getInstance();
+        int hora = data.get(Calendar.HOUR_OF_DAY);
+        int min = data.get(Calendar.MINUTE);
+        int seg = data.get(Calendar.SECOND);
+
+        String horaS = (hora < 10) ? "0" + Integer.toString(hora) : Integer.toString(hora);
+        String minutoS = (hora < 10) ? "0" + Integer.toString(min) : Integer.toString(min);
+        String segundoS = (hora < 10) ? "0" + Integer.toString(seg) : Integer.toString(seg);
+
+        p1.setData(LocalDate.now());
+
+        if (hora < 17) {
+            p1.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
+            p1.setHorarioSaida("123123");
+        } else {
+            p1.setHorarioSaida(horaS);
+        }
+        p1.setId_funcionario((long)1123214);
+        p1.setFalta(0);
+        
+        pontoRepository.save(p1);
         return "redirect:/";
     }
 
