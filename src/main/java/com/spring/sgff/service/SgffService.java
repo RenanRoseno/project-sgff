@@ -19,6 +19,8 @@ public interface SgffService {
     List<Funcionarios> findAll();
 
     Funcionarios findById(long id);
+    
+    Funcionarios findByCpf(String cpf);
 
     Funcionarios save(Funcionarios funcionario);
 
