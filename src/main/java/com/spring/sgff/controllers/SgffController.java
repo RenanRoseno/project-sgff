@@ -14,14 +14,12 @@ import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import static jdk.nashorn.internal.runtime.Debug.id;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,17 +34,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class SgffController {
 
     @Autowired
-    SgffService sgffservice;
+    private SgffService sgffservice;
 
     @Autowired
-    PontoRepository pontoRepository;
+    private PontoRepository pontoRepository;
 
-    // Registrar Ponto
+
+ @RequestMapping(value = "/login", method = RequestMethod.GET)
+ public String login(){
+     return "login";
+ }
+
     @RequestMapping(value = "/registrarponto/", method = RequestMethod.GET)
     public String registrarPonto(@RequestParam("parametro") String parametro, RedirectAttributes attributes) {
 
         Funcionarios funcionario = sgffservice.findByCpf(parametro);
-
+        String senhaEn = new BCryptPasswordEncoder().encode("123");
+        System.out.print(senhaEn);
         if (!(funcionario == null)) {
             Ponto p1 = new Ponto();
             Calendar data = Calendar.getInstance();
@@ -64,12 +68,12 @@ public class SgffController {
                 p1.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
                 p1.setHorarioSaida("-");
             } else {
+                p1.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
                 p1.setHorarioSaida(horaS + ":" + minutoS + ":" + segundoS);
             }
             p1.setId_funcionario(funcionario.getId());
             p1.setFalta(0);
 
-            pontoRepository.save(p1);
             attributes.addFlashAttribute("mensagem", "Ok");
             return "redirect:/";
         }
@@ -110,13 +114,17 @@ public class SgffController {
     // Cria um novo funcionário
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
     public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result,
-            RedirectAttributes attributes) {
+        RedirectAttributes attributes) {
+        String senhaEn = new BCryptPasswordEncoder().encode(funcionario.getSenha());
+        funcionario.setSenha(senhaEn);
+        
+
         if (result.hasErrors()) {
+            System.out.println(funcionario.toString());
             attributes.addFlashAttribute("mensagem", "Verifique os dados digitados");
             return "redirect:/newfuncionario/";
         }
 
-        funcionario.setDataAdmissao(LocalDate.now());
         sgffservice.save(funcionario);
         return "redirect:/funcionarios/";
     }
