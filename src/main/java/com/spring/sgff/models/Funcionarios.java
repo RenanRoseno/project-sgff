@@ -36,10 +36,30 @@ public class Funcionarios {
     @NotBlank
     private String nome;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate dataAdmissao;
+    private String dataAdmissao;
 
     private int cargo;
+
+    private String telefone;
+
+    @NotBlank
+    private String senha;
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     @NotBlank
     private String email;
@@ -76,11 +96,11 @@ public class Funcionarios {
         this.nome = nome;
     }
 
-    public LocalDate getDataAdmissao() {
+    public String getDataAdmissao() {
         return dataAdmissao;
     }
 
-    public void setDataAdmissao(LocalDate dataAdmissao) {
+    public void setDataAdmissao(String dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
 
@@ -100,4 +120,8 @@ public class Funcionarios {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Funcionarios{" + "id=" + id + ", cpf=" + cpf + ", rg=" + rg + ", nome=" + nome + ", dataAdmissao=" + dataAdmissao + ", cargo=" + cargo + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email + '}';
+    }
 }
