@@ -49,6 +49,16 @@ SET default_with_oids = false;
 -- TOC entry 196 (class 1259 OID 69765)
 -- Name: funcionarios; Type: TABLE; Schema: public; Owner: postgres
 --
+ CREATE TABLE public.usuarios
+(
+    login character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    id_funcionario bigint,
+    senha character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT usuarios_pkey PRIMARY KEY (login)
+)
+
+ALTER TABLE public.usuarios
+    OWNER to postgres;
 
 CREATE TABLE public.funcionarios (
     id bigint NOT NULL,
@@ -106,6 +116,9 @@ SELECT pg_catalog.setval('public.hibernate_sequence', 62, true);
 ALTER TABLE ONLY public.funcionarios
     ADD CONSTRAINT funcionarios_pkey PRIMARY KEY (id);
 
+INSERT INTO public.usuarios(
+	login, id_funcionario, senha)
+	VALUES ('admin', 68, '$2a$10$h/W41PgHco7HM48yOst.d.eCHopthIOTft39dZJyNsJG7Ptf.BJBe');
 
 -- Completed on 2020-09-30 16:50:10
 
