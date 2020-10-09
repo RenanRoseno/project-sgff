@@ -39,11 +39,15 @@ public class SgffController {
     @Autowired
     private PontoRepository pontoRepository;
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
 
- @RequestMapping(value = "/login", method = RequestMethod.GET)
- public String login(){
-     return "login";
- }
+    @RequestMapping(value = "/pontos", method = RequestMethod.GET)
+    public String verPontos() {
+        return "pontosDetails";
+    }
 
     @RequestMapping(value = "/registrarponto/", method = RequestMethod.GET)
     public String registrarPonto(@RequestParam("parametro") String parametro, RedirectAttributes attributes) {
@@ -114,10 +118,9 @@ public class SgffController {
     // Cria um novo funcionário
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
     public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result,
-        RedirectAttributes attributes) {
+            RedirectAttributes attributes) {
         String senhaEn = new BCryptPasswordEncoder().encode(funcionario.getSenha());
         funcionario.setSenha(senhaEn);
-        
 
         if (result.hasErrors()) {
             System.out.println(funcionario.toString());
