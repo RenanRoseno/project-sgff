@@ -13,7 +13,7 @@ and open the template in the editor.
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        <script src="https://kit.fontawesome.com/9c2f63c79c.js" crossorigin="anonymous"></script>
 
     </head>
 
@@ -30,7 +30,6 @@ and open the template in the editor.
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button"></button>
-                        <button class="dropdown-item" type="button">Aniversariante do Mês</button>
                         <button class="dropdown-item" type="button">Registro de pontos</button>
                     </div>
                 </div>
@@ -40,7 +39,7 @@ and open the template in the editor.
         </header>
         <section>
             <div class="container" style="width:90%; padding-bottom:30px;"><br>
-                <a href="/newfuncionario/" class="btn btn-primary offset-md-11" role="button">+ Novo funcionário</a><br><br>
+                <a href="/newfuncionario/" class="btn btn-primary offset-md-11" role="button"><i class="fa fa-plus"></i>&nbsp;Novo funcionário</a><br><br>
                 <table class="table">
                     <thead>
                         <tr>
@@ -64,11 +63,11 @@ and open the template in the editor.
                             <td><span th:text="${funcionario.email}"></span></td>
                             <td><span th:text="${funcionario.dataAdmissao}"></span></td>
                             <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}">
-                                    <button class="btn btn-info">Ver</button>
+                                    <button class="btn btn-info"><i class="fa fa-eye"></i></button>
                                 </a></td>
                             <td><a href="/delete/"
                                    th:href="${(#mvc.url('SC#deleteFuncionario').arg(0, funcionario.id)).build()}">
-                                    <button class="btn btn-danger">Remover</button>
+                                    <button class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
                                 </a></td>
                         </tr>
                     </tbody>
