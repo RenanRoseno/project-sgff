@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+
+    <head>
+        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/9c2f63c79c.js" crossorigin="anonymous"></script>
+
+
+    </head>
+
+    <body>
+        <header>
+            <!-- As a heading -->
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="#" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
+                    Frequência</a>
+
+                <div class="dropdown offset-md-5">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relatórios
+                    </button>
+                   
+                </div>
+
+                <a href="logout" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+            </nav>
+        </header>
+        <section>
+            <div class="container" style="width:90%; padding-bottom:30px;"><br>
+                <form class="form form-inline col-md-3 offset-md-9">
+                    <select class="form-control form-group">
+                        <option value="1">Fevereiro</option>
+                    </select>&nbsp;
+                    <button type="submit" class="btn btn-success" style="background-color:DarkSlateGray; border:none; width: 50px;"><i class="fa fa-search"></i></button>
+                </form><br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Data</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Saída</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+
+</html>
