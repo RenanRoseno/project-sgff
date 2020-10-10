@@ -5,8 +5,6 @@
  */
 package com.spring.sgff.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -122,6 +120,8 @@ public class Funcionarios {
 
     @Override
     public String toString() {
-        return "Funcionarios{" + "id=" + id + ", cpf=" + cpf + ", rg=" + rg + ", nome=" + nome + ", dataAdmissao=" + dataAdmissao + ", cargo=" + cargo + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email + '}';
+        return "Funcionarios{" + "id=" + id + ", cpf=" + cpf + ", rg=" + rg + ", nome=" + nome + ", dataAdmissao="
+                + dataAdmissao + ", cargo=" + cargo + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email
+                + '}';
     }
 }

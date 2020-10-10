@@ -6,11 +6,11 @@
 package com.spring.sgff.service.serviceimpl;
 
 import com.spring.sgff.models.Funcionarios;
-import com.spring.sgff.models.Ponto;
 import com.spring.sgff.repository.SgffRepository;
 import com.spring.sgff.service.SgffService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -46,7 +46,29 @@ public class SgffServiceImpl implements SgffService {
 
     @Override
     public Funcionarios findByCpf(String cpf) {
-       return sgffRepository.findByCpf(cpf);
+        return sgffRepository.findByCpf(cpf);
+    }
+
+    @Override
+    public Funcionarios updateFuncionarios(Funcionarios funcionario) {
+        Funcionarios filteredEmployee = null;
+        try {
+            filteredEmployee = sgffRepository.getOne(funcionario.getId());
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        if (filteredEmployee != null) {
+            filteredEmployee.setNome(funcionario.getNome());
+            filteredEmployee.setCpf(funcionario.getCpf());
+            filteredEmployee.setCargo(funcionario.getCargo());
+            filteredEmployee.setEmail(funcionario.getEmail());
+            filteredEmployee.setTelefone(funcionario.getTelefone());
+            filteredEmployee.setRg(funcionario.getRg());
+            filteredEmployee.setDataAdmissao(funcionario.getDataAdmissao());
+            filteredEmployee.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+            sgffRepository.save(filteredEmployee);
+        }
+        return filteredEmployee;
     }
 
 }

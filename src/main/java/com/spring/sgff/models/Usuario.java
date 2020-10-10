@@ -25,6 +25,16 @@ public class Usuario implements UserDetails {
     private Long id_funcionario;
     private String senha;
 
+    public Usuario() {
+
+    }
+
+    public Usuario(String login, long id_funcionario, String senha) {
+        this.login = login;
+        this.id_funcionario = id_funcionario;
+        this.senha = senha;
+    }
+
     public String getLogin() {
         return login;
     }

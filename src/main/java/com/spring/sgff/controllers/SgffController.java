@@ -7,7 +7,7 @@ package com.spring.sgff.controllers;
 
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
-import com.spring.sgff.repository.PontoRepository;
+import com.spring.sgff.models.Usuario;
 import com.spring.sgff.service.SgffService;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,18 +36,21 @@ public class SgffController {
     private SgffService sgffservice;
 
     @Autowired
-    private PontoRepository pontoRepository;
+    private UserController userController;
 
+    // Login
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
 
+    // Ver pontos
     @RequestMapping(value = "/pontos", method = RequestMethod.GET)
     public String verPontos() {
         return "pontosDetails";
     }
 
+    // Registrar ponto
     @RequestMapping(value = "/registrarponto/", method = RequestMethod.GET)
     public String registrarPonto(@RequestParam("parametro") String parametro, RedirectAttributes attributes) {
 
@@ -119,6 +121,7 @@ public class SgffController {
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
     public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result,
             RedirectAttributes attributes) {
+
         String senhaEn = new BCryptPasswordEncoder().encode(funcionario.getSenha());
         funcionario.setSenha(senhaEn);
 
@@ -129,6 +132,24 @@ public class SgffController {
         }
 
         sgffservice.save(funcionario);
+        String password = funcionario.getSenha();
+        long id = funcionario.getId();
+        String login = funcionario.getCpf();
+        Usuario newUser = new Usuario(login, id, password);
+        userController.saveUsuario(newUser);
+        return "redirect:/funcionarios/";
+    }
+
+    @RequestMapping(value = "/funcionarios/{id}", method = RequestMethod.POST)
+    public String requestMethodName(@Valid Funcionarios funcionario) {
+        Funcionarios updatedEmployee = sgffservice.updateFuncionarios(funcionario);
+
+        String password = updatedEmployee.getSenha();
+        long id = updatedEmployee.getId();
+        String login = updatedEmployee.getCpf();
+        Usuario newUser = new Usuario(login, id, password);
+
+        userController.saveUsuario(newUser);
         return "redirect:/funcionarios/";
     }
 

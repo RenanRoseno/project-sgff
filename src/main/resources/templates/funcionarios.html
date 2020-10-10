@@ -6,77 +6,85 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://thymeleaf.org">
 
-    <head>
-        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/9c2f63c79c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9c2f63c79c.js" crossorigin="anonymous"></script>
 
-    </head>
+</head>
 
-    <body>
-        <header>
-            <!-- As a heading -->
-            <nav class="navbar navbar-dark bg-dark">
-                <a href="#" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
-                    Frequência</a>
+<body>
+    <header>
+        <!-- As a heading -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
+                Frequência</a>
 
-                <div class="dropdown offset-md-5">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Relatórios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>
-                        <button class="dropdown-item" type="button">Registro de pontos</button>
-                    </div>
+            <div class="dropdown offset-md-5">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relatórios
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <button class="dropdown-item" type="button">Registro de pontos</button>
                 </div>
-
-                <a href="logout" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
-            </nav>
-        </header>
-        <section>
-            <div class="container" style="width:90%; padding-bottom:30px;"><br>
-                <a href="/newfuncionario/" class="btn btn-primary offset-md-11" role="button"><i class="fa fa-plus"></i>&nbsp;Novo funcionário</a><br><br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Identificação</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">RG</th>
-                            <th scope="col">Cargo</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Data de Admissão</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="funcionario: ${funcionarios}">
-                            <th scope="col"><span th:text="${funcionario.id}"></span></th>
-                            <td><span th:text="${funcionario.cpf}"></span></td>
-                            <td><span th:text="${funcionario.nome}"></span></td>
-                            <td><span th:text="${funcionario.rg}"></span></td>
-                            <td><span th:text="${funcionario.cargo}"></span></td>
-                            <td><span th:text="${funcionario.email}"></span></td>
-                            <td><span th:text="${funcionario.dataAdmissao}"></span></td>
-                            <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}">
-                                    <button class="btn btn-info"><i class="fa fa-eye"></i></button>
-                                </a></td>
-                            <td><a href="/delete/"
-                                   th:href="${(#mvc.url('SC#deleteFuncionario').arg(0, funcionario.id)).build()}">
-                                    <button class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
-                                </a></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        </section>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+
+            <a href="logout" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+        </nav>
+    </header>
+    <section>
+        <div class="container" style="width:90%; padding-bottom:30px;"><br>
+            <a href="/newfuncionario/" class="btn btn-primary offset-md-11" role="button"><i
+                    class="fa fa-plus"></i>&nbsp;Novo funcionário</a><br><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Identificação</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">RG</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Data de Admissão</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="funcionario: ${funcionarios}">
+                        <th scope="col"><span th:text="${funcionario.id}"></span></th>
+                        <td><span th:text="${funcionario.cpf}"></span></td>
+                        <td><span th:text="${funcionario.nome}"></span></td>
+                        <td><span th:text="${funcionario.rg}"></span></td>
+                        <td><span th:text="${funcionario.cargo}"></span></td>
+                        <td><span th:text="${funcionario.email}"></span></td>
+                        <td><span th:text="${funcionario.dataAdmissao}"></span></td>
+                        <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}">
+                                <button class="btn btn-info"><i class="fa fa-eye"></i></button>
+                            </a></td>
+                        <td><a href="/delete/"
+                                th:href="${(#mvc.url('SC#deleteFuncionario').arg(0, funcionario.id)).build()}">
+                                <button class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
+                            </a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
 
 </html>
