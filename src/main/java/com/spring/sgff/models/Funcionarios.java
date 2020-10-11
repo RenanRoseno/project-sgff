@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.sgff.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
-/**
- *
- * @author rosen
- */
 @Entity
 @Table(name = "funcionarios")
 
@@ -39,6 +33,10 @@ public class Funcionarios {
     private int cargo;
 
     private String telefone;
+
+    @OneToMany
+    @JoinColumn(name = "funcionario_id")
+    private List<Ponto> ponto;
 
     @NotBlank
     private String senha;
@@ -116,6 +114,14 @@ public class Funcionarios {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPonto(List<Ponto> ponto) {
+        this.ponto = ponto;
+    }
+
+    public List<Ponto> getPonto() {
+        return this.ponto;
     }
 
     @Override

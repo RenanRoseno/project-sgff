@@ -11,42 +11,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
 /**
  *
  * @author rosen
  */
-@Entity 
-@Table(name="Pontos")
+@Entity
+@Table(name = "Pontos")
 
 public class Ponto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate data;
-     
+
     @NotBlank
     private String horarioEntrada;
-    
+
     @NotBlank
     private String horarioSaida;
-            
+
     private int falta;
-    
-    private Long id_funcionario;
 
-    public Long getId_funcionario() {
-        return id_funcionario;
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionarios funcionario;
+
+    public Funcionarios getId_funcionario() {
+        return funcionario;
     }
 
-    public void setId_funcionario(Long id_funcionario) {
-        this.id_funcionario = id_funcionario;
+    public void setId_funcionario(Funcionarios funcionario) {
+        this.funcionario = funcionario;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -86,9 +90,5 @@ public class Ponto {
     public void setFalta(int falta) {
         this.falta = falta;
     }
-    
-    
-    
-    
-    
+
 }
