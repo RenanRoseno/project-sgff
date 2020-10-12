@@ -1,5 +1,6 @@
 package com.spring.sgff.configuration;
 
+import javax.ws.rs.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers(AUTH_LIST).permitAll().anyRequest().authenticated().and()
+        http.csrf().disable().authorizeRequests().
+                antMatchers(AUTH_LIST).permitAll().
+                antMatchers(HttpMethod.GET, "/newfuncionario/").hasRole("ADMIN").
+                antMatchers(HttpMethod.POST, "/newfuncionario/").hasRole("ADMIN").
+                anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll().and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
