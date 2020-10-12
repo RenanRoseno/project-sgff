@@ -2,6 +2,8 @@ package com.spring.sgff.controllers;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
+
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.service.PontoService;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -60,9 +63,16 @@ public class PontoController {
         return "redirect:/funcionarios";
     }
 
-    // Ver pontos
+    // Ver todos pontos
     @RequestMapping(value = "/pontos", method = RequestMethod.GET)
-    public String verPontos() {
-        return "pontosDetails";
+    public ModelAndView verPontos() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pontosDetails");
+
+        List<Ponto> pontos = pontoService.findAll();
+
+        mv.addObject("pontosDetails", pontos);
+
+        return mv;
     }
 }

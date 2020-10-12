@@ -18,7 +18,8 @@ public class Cargo {
     @NotBlank
     private String nome;
 
-    private long id_funcionario;
+    @NotBlank
+    private String descricao;
 
     public long getId() {
         return this.id;
@@ -32,11 +33,11 @@ public class Cargo {
         return this.nome;
     }
 
-    public void setId_funcionario(long id_funcionario) {
-        this.id_funcionario = id_funcionario;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public long getId_funcionario() {
-        return this.id_funcionario;
+    public String getDescricao() {
+        return this.descricao;
     }
 }

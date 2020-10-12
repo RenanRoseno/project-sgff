@@ -53,7 +53,7 @@ public class SgffController {
         return mv;
     }
 
-    // Chamando a págiona de formulário para add um novo funcionário
+    // Chamando a página de formulário para add um novo funcionário
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.GET)
     public String getFuncionarioForm() {
         return "FuncionarioForm";
@@ -68,7 +68,7 @@ public class SgffController {
         funcionario.setSenha(senhaEn);
 
         if (result.hasErrors()) {
-            System.out.println(funcionario.toString());
+            // System.out.println(funcionario.toString());
             attributes.addFlashAttribute("mensagem", "Verifique os dados digitados");
             return "redirect:/newfuncionario/";
         }
@@ -82,6 +82,7 @@ public class SgffController {
         return "redirect:/funcionarios/";
     }
 
+    // Alterando os dados de um funcionário
     @RequestMapping(value = "/funcionarios/{id}", method = RequestMethod.POST)
     public String requestMethodName(@Valid Funcionarios funcionario) {
         Funcionarios updatedEmployee = sgffservice.updateFuncionarios(funcionario);
