@@ -91,4 +91,9 @@ public class Ponto {
         this.falta = falta;
     }
 
+    @Override
+    public String toString() {
+        return "Ponto {" + funcionario + "};";
+    }
+
 }
