@@ -20,7 +20,7 @@ and open the template in the editor.
     <header>
         <!-- As a heading -->
         <nav class="navbar navbar-dark bg-dark">
-            <a href="#" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
+            <a href="/funcionarios/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
                 Frequência</a>
 
             <div class="dropdown offset-md-5">
@@ -64,7 +64,7 @@ and open the template in the editor.
                         <td><span th:text="${funcionario.email}"></span></td>
                         <td><span th:text="${funcionario.dataAdmissao}"></span></td>
                         <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}">
-                                <button class="btn btn-info"><i class="fa fa-eye"></i></button>
+                                <button class="btn btn-info"><i class="fa fa-edit"></i></button>
                             </a></td>
                         <td><a href="/delete/"
                                 th:href="${(#mvc.url('SC#deleteFuncionario').arg(0, funcionario.id)).build()}">

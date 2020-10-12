@@ -27,5 +27,9 @@ public class PontoServiceImpl implements PontoService {
     public Ponto save(Ponto ponto) {
         return pontoRepository.save(ponto);
     }
+    
+    public Ponto findByIdFuncionario(long id){
+        return pontoRepository.findByIdFuncionario(id);
+    }
 
 }
