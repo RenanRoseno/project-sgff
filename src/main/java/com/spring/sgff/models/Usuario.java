@@ -1,23 +1,43 @@
 package com.spring.sgff.models;
 
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario implements UserDetails {
+public class Usuario implements UserDetails, Serializable {
 
     @Id
     private String login;
     private Long id_funcionario;
     private String senha;
 
+    @ManyToMany
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(
+            name = "usuario_id", referencedColumnName = "login"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "nomeRole"))
+    private List<Role> roles;
+
     public Usuario() {
 
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public Usuario(String login, long id_funcionario, String senha) {
@@ -52,7 +72,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return (Collection<? extends GrantedAuthority>)this.roles;
     }
 
     @Override
