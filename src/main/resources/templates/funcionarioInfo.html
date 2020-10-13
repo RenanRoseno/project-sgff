@@ -1,0 +1,114 @@
+<html xmlns:th="http://thymeleaf.org">
+
+    <head>
+        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <script type="text/javascript" src="/webapp/js/1.5.2.js"></script>
+        <script type="text/javascript" src="/webapp/js/jquery.maskedinput-1.3.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <!-- As a heading -->
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="/funcionarios/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
+                    Frequência</a>
+
+                <div class="dropdown offset-md-5">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relatórios
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>
+                        <button class="dropdown-item" type="button">Aniversariante do Mês</button>
+                        <button class="dropdown-item" type="button">Registro de pontos</button>
+                    </div>
+                </div>
+                <a href="logout" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+            </nav>
+        </header>
+
+
+        <section>
+            <div class="container" style="width:35%; padding-bottom:30px;">
+                <center>
+                    <h2>Detalhes de Funcionário</h2>
+                </center>
+                <th:block th:include="mensagemValidacao"></th:block>
+                <div>
+                    <form method="POST">
+                        <div class="form group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" th:value="${funcionario.nome}" name="nome" id="nome"
+                                   placeholder="nome" disabled>
+                        </div>
+                        <div class="form group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" th:value="${funcionario.email}" name="email" id="email"
+                                   placeholder="email" disabled>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="rg">RG</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.rg}" name="rg"
+                                           placeholder="rg" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.cpf}" name="cpf"
+                                           placeholder="cpf" id="cpf" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cargo">Cargo</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.cargo}" name="cargo"
+                                           placeholder="cargo" id="cargo" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cargo">Telefone</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.telefone}"
+                                           name="telefone" placeholder="" id="telefone" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+
+                                <label for="dataA">Data de Admissão</label>
+                                <input type="date" class="form-control" name="dataAdmissao"
+                                       th:value="${funcionario.dataAdmissao}" id="dataAdmissao" placeholder="dataAdmissao" disabled>
+                            </div>
+                        </div><br>
+
+                        <center><a href="/funcionarios"><button type="button" class="btn btn-primary"
+                                                                style="background-color:DarkSlateGray; border:none; height: 50px;">Voltar</button></a>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+        <script>
+            jQuery(function ($) {
+                $("#cpf").mask("999.999.999-99");
+                $("#telefone").mask("(99)99999-9999");
+            });
+        </script>
+    </body>
+
+</html>

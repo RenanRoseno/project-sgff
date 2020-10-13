@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+
+    <head>
+        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/9c2f63c79c.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <header>
+            <!-- As a heading -->
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="/funcionarios/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
+                    Frequência</a>
+
+
+                <div class="dropdown offset-md-3">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relatórios
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>
+                        <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
+                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por funcionário</button></a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Funcionários
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>  
+                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Perfil</button></a>
+                        <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar Funcionários</button></a>
+                    </div>
+                </div>
+                <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Cargos</a>
+                <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+            </nav>
+        </header>
+
+        <div class="container" style="width:90%; padding-bottom:30px;"><br>
+            <h3> Bem vindo, <span th:text="${nome}"></span> !</h3>
+            <br>
+            <div class="row">
+                <div class="col bg-dark text-white" style="border-top-left-radius:25px;">
+                    <h1><span th:text="${qtdFunc}"></span> </h1>
+                </div>
+
+                <div class="col bg-dark text-white offset-sm-1" style="border-top-left-radius:25px;">
+                    <h1> <span th:text="${qtdCargo}"></span> </h1>
+                </div>
+                <div class="col bg-dark text-white offset-sm-1" style="border-top-left-radius:25px;">
+                    <h1><span th:text="${qtdPonto}"></span></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm col bg-dark text-white " style="border-bottom-right-radius:25px;">
+                    <h4>Funcionários</h4>
+                </div>
+                <div class="col-sm col bg-dark text-white offset-sm-1" style="border-bottom-right-radius:25px;">
+                    <h4>Cargos</h4>
+                </div>
+                <div class="col-sm col bg-dark text-white offset-sm-1" style="border-bottom-right-radius:25px;">
+                    <h4>Pontos Registrados</h4>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html>

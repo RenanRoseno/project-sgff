@@ -37,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(AUTH_LIST).permitAll().
                 antMatchers(HttpMethod.GET, "/newfuncionario/").hasRole("ADMIN").
                 antMatchers(HttpMethod.POST, "/newfuncionario/").hasRole("ADMIN").
+                antMatchers(HttpMethod.GET, "/funcionarios/").hasRole("ADMIN").
+                antMatchers(HttpMethod.GET, "/newCargo/").hasRole("ADMIN").
+                antMatchers(HttpMethod.GET, "/pontos/").hasRole("USER").
                 anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll().and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

@@ -3,6 +3,8 @@ package com.spring.sgff.controllers;
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.models.Usuario;
+import com.spring.sgff.service.CargoService;
+import com.spring.sgff.service.PontoService;
 import com.spring.sgff.service.SgffService;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -10,6 +12,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,6 +34,12 @@ public class SgffController {
 
     @Autowired
     private UserController userController;
+
+    @Autowired
+    private CargoService cargoService;
+
+    @Autowired
+    private PontoService pontoService;
 
     // Rota de que contém a lista de todos os funcionários
     @RequestMapping(value = "/funcionarios", method = RequestMethod.GET)
@@ -102,4 +114,43 @@ public class SgffController {
         sgffservice.deleteFuncionario(id);
         return "redirect:/funcionarios/";
     }
+
+    // Página inicial
+    @RequestMapping(value = "/main/", method = RequestMethod.GET)
+    public ModelAndView showMain() {
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("main");
+        String nome = "";
+        int qtdFunc = sgffservice.findAll().size();
+        int qtdCargo = cargoService.findAll().size();
+        int qtdPonto = pontoService.findAll().size();
+        
+        nome = SecurityContextHolder.getContext().getAuthentication().getName();
+        
+        if(nome.equals("admin")){
+            nome = "admin";
+        }else{
+            nome = sgffservice.findByCpf(nome).getNome();
+        }
+        
+        mv.addObject("nome", nome);
+        mv.addObject("qtdFunc", qtdFunc);
+        mv.addObject("qtdCargo", qtdCargo);
+        mv.addObject("qtdPonto", qtdPonto);
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/funcionario/{id}", method = RequestMethod.GET)
+    public ModelAndView verFuncionario(@PathVariable("id") long id) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("funcionarioInfo");
+
+        Funcionarios funcionario = sgffservice.findById(id);
+        mv.addObject("funcionario", funcionario);
+
+        return mv;
+    }
+
 }

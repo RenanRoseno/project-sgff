@@ -3,6 +3,7 @@ package com.spring.sgff.service.serviceimpl;
 import com.spring.sgff.models.Cargo;
 import com.spring.sgff.repository.CargoRepository;
 import com.spring.sgff.service.CargoService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,10 @@ public class CargoServiceImpl implements CargoService {
     public Cargo saveCargo(Cargo cargo) {
         return cargoRepository.save(cargo);
     }
+
+    public List<Cargo> findAll() {
+        return cargoRepository.findAll();
+    }
+;
+
 }
