@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -68,11 +67,11 @@ public class CargoController {
         Cargo c1 = cargoService.updateCargo(cargo);
         return "redirect:/cargos/";
     }
-    
-     @RequestMapping(value = "/deleteCargo/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/deleteCargo/{id}", method = RequestMethod.GET)
     public String deleteCargo(@PathVariable("id") long id) {
         cargoService.deleteCargo(id);
-        
+
         return "redirect:/cargos/";
     }
 }

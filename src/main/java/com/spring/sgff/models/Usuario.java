@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -23,9 +22,7 @@ public class Usuario implements UserDetails, Serializable {
     private String senha;
 
     @ManyToMany
-    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(
-            name = "usuario_id", referencedColumnName = "login"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "nomeRole"))
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "login"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "nomeRole"))
     private List<Role> roles;
 
     public Usuario() {
@@ -72,7 +69,7 @@ public class Usuario implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return (Collection<? extends GrantedAuthority>)this.roles;
+        return (Collection<? extends GrantedAuthority>) this.roles;
     }
 
     @Override

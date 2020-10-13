@@ -41,6 +41,9 @@ public class SgffController {
     @Autowired
     private PontoService pontoService;
 
+    @Autowired
+    private ErrorsController errorsController;
+
     // Rota de que contém a lista de todos os funcionários
     @RequestMapping(value = "/funcionarios", method = RequestMethod.GET)
     public ModelAndView getFuncionarios() {
@@ -125,15 +128,15 @@ public class SgffController {
         int qtdFunc = sgffservice.findAll().size();
         int qtdCargo = cargoService.findAll().size();
         int qtdPonto = pontoService.findAll().size();
-        
+
         nome = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        if(nome.equals("admin")){
+
+        if (nome.equals("admin")) {
             nome = "admin";
-        }else{
+        } else {
             nome = sgffservice.findByCpf(nome).getNome();
         }
-        
+
         mv.addObject("nome", nome);
         mv.addObject("qtdFunc", qtdFunc);
         mv.addObject("qtdCargo", qtdCargo);
@@ -154,14 +157,14 @@ public class SgffController {
     }
 
     @RequestMapping(value = "/perfil/", method = RequestMethod.GET)
-    public ModelAndView perfil(){
+    public ModelAndView perfil() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("funcionarioInfo");
         String nome = SecurityContextHolder.getContext().getAuthentication().getName();
-        
+
         Funcionarios f1 = sgffservice.findByCpf(nome);
         mv.addObject("funcionario", f1);
-        
+
         return mv;
     }
 }
