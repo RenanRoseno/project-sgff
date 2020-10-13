@@ -153,4 +153,15 @@ public class SgffController {
         return mv;
     }
 
+    @RequestMapping(value = "/perfil/", method = RequestMethod.GET)
+    public ModelAndView perfil(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("funcionarioInfo");
+        String nome = SecurityContextHolder.getContext().getAuthentication().getName();
+        
+        Funcionarios f1 = sgffservice.findByCpf(nome);
+        mv.addObject("funcionario", f1);
+        
+        return mv;
+    }
 }

@@ -41,38 +41,37 @@ and open the template in the editor.
         </header>
         <section>
             <div class="container" style="width:90%; padding-bottom:30px;"><br>
-                <a href="/newfuncionario/" class="btn btn-primary offset-md-11" role="button"><i
-                        class="fa fa-plus"></i>&nbsp;Novo funcionário</a><br><br>
+                <a href="/newCargo/" class="btn btn-primary offset-md-11" role="button"><i
+                        class="fa fa-plus"></i>&nbsp;Novo Cargo</a><br><br>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Identificação</th>
-                            <th scope="col">CPF</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">RG</th>
-                            <th scope="col">Cargo</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Data de Admissão</th>
+                            <th scope="col">Descrição</th>
                             <th scope="col" colspan="2"><center>Ações</center></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="funcionario: ${funcionarios}">
-                            <th scope="col"><span th:text="${funcionario.id}"></span></th>
-                            <td><span th:text="${funcionario.cpf}"></span></td>
-                            <td><span th:text="${funcionario.nome}"></span></td>
-                            <td><span th:text="${funcionario.rg}"></span></td>
-                            <td><span th:text="${funcionario.cargo}"></span></td>
-                            <td><span th:text="${funcionario.email}"></span></td>
-                            <td><span th:text="${funcionario.dataAdmissao}"></span></td>
-                            <td><a th:href="${(#mvc.url('SC#getFuncionariosDetails').arg(0, funcionario.id)).build()}">
-                                    <center><button class="btn btn-info"><i class="fa fa-edit"></i></button></center>
-                                </a></td>
-                            <td><a href="/delete/"
-                                   th:href="${(#mvc.url('SC#deleteFuncionario').arg(0, funcionario.id)).build()}">
-                                    <center>
-                                        <button class="btn btn-danger"><i class="fa fa-trash-alt"></i></button></center>
-                                </a></td>
+                        <tr th:each="cargo: ${cargos}">
+                            <th scope="col"><span th:text="${cargo.id}"></span></th>
+                            <td><span th:text="${cargo.nome}"></span></td>
+                            <td><span th:text="${cargo.descricao}"></span></td>
+                            <td><center>
+                        <a th:href="${(#mvc.url('CC#cargosDetails').arg(0, cargo.id)).build()}">
+                            <button class="btn btn-info">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </a>
+                    </center></td>
+                    <td><center>
+                        <a href="/deleteCargo/"
+                           th:href="${(#mvc.url('CC#deleteCargo').arg(0, cargo.id)).build()}">
+                            <button class="btn btn-danger"><i class="fa fa-trash-alt"></i>
+                            </button>
+                        </a>    
+                    </center></td>
+
                     </tr>
                     </tbody>
                 </table>

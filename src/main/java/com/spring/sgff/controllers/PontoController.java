@@ -8,7 +8,10 @@ import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.service.PontoService;
 import com.spring.sgff.service.SgffService;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,7 +54,7 @@ public class PontoController {
                 ponto.setHorarioSaida(horaS + ":" + minutoS + ":" + segundoS);
             }
 
-            ponto.setId_funcionario(funcionario);
+            ponto.setId_funcionario(funcionario.getId());
             ponto.setFalta(0);
 
             pontoService.save(ponto);
@@ -69,10 +72,26 @@ public class PontoController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pontosDetails");
 
-        List<Ponto> pontos = pontoService.findAll();
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        mv.addObject("pontosDetails", pontos);
+        String mm = (month < 10) ? "0" + Integer.toString(month) : Integer.toString(month);
+        String dataIn = Integer.toString(year) + "-" + mm + "-" + "01";
+        String dataFi = Integer.toString(year) + "-" + mm + "-" + "31";
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateI = LocalDate.parse(dataIn, formatter);
+        LocalDate dateF = LocalDate.parse(dataFi, formatter);
+
+        String cpf = SecurityContextHolder.getContext().getAuthentication().getName();
+        long id_func = sgffservice.findByCpf(cpf).getId();
+
+        List<Ponto> pontos = pontoService.getPontosFuncionario(id_func, dateI, dateF);
+
+        mv.addObject("pontos", pontos);
         return mv;
     }
 }

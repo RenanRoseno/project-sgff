@@ -42,11 +42,22 @@ and open the template in the editor.
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button"></button>  
-                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Perfil</button></a>
+                        <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
                         <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar Funcionários</button></a>
                     </div>
                 </div>
-                <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Cargos</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cargos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>  
+                        <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item" type="button">Novo cargo</button></a>
+                        <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
+                    </div>
+                </div>
+                
                 <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
             </nav>
         </header>

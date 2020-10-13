@@ -6,5 +6,11 @@ import java.util.List;
 public interface CargoService {
     List<Cargo> findAll();
     
-    Cargo saveCargo(Cargo cargo);
+    Cargo save(Cargo cargo);
+    
+    Cargo findById(long id);
+    
+    Cargo updateCargo(Cargo cargo);
+    
+    void deleteCargo(long id);
 }

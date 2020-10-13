@@ -34,10 +34,6 @@ public class Funcionarios {
 
     private String telefone;
 
-    @OneToMany
-    @JoinColumn(name = "funcionario_id")
-    private List<Ponto> ponto;
-
     @NotBlank
     private String senha;
 
@@ -114,14 +110,6 @@ public class Funcionarios {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPonto(List<Ponto> ponto) {
-        this.ponto = ponto;
-    }
-
-    public List<Ponto> getPonto() {
-        return this.ponto;
     }
 
     @Override

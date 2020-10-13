@@ -25,7 +25,11 @@ public class Cargo {
         return this.id;
     }
 
-    public void nome(String nome) {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

@@ -38,17 +38,15 @@ public class Ponto {
     private String horarioSaida;
 
     private int falta;
+    
+    private long id_funcionario;
 
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id")
-    private Funcionarios funcionario;
-
-    public Funcionarios getId_funcionario() {
-        return funcionario;
+    public long getId_funcionario() {
+        return id_funcionario;
     }
 
-    public void setId_funcionario(Funcionarios funcionario) {
-        this.funcionario = funcionario;
+    public void setId_funcionario(long id_funcionario) {
+        this.id_funcionario = id_funcionario;
     }
 
     public Long getId() {
@@ -89,11 +87,6 @@ public class Ponto {
 
     public void setFalta(int falta) {
         this.falta = falta;
-    }
-
-    @Override
-    public String toString() {
-        return "Ponto {" + funcionario + "};";
     }
 
 }
