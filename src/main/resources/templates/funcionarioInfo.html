@@ -19,18 +19,42 @@
                 <a href="/funcionarios/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
                     Frequência</a>
 
-                <div class="dropdown offset-md-5">
+
+                <div class="dropdown offset-md-3">
                     <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
                             id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Relatórios
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button"></button>
-                        <button class="dropdown-item" type="button">Aniversariante do Mês</button>
-                        <button class="dropdown-item" type="button">Registro de pontos</button>
+                        <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
+                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por funcionário</button></a>
                     </div>
                 </div>
-                <a href="logout" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Funcionários
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>  
+                        <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
+                        <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar Funcionários</button></a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cargos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button"></button>  
+                        <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item" type="button">Novo cargo</button></a>
+                        <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
+                    </div>
+                </div>
+                
+                <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
             </nav>
         </header>
 
@@ -109,6 +133,15 @@
                 $("#telefone").mask("(99)99999-9999");
             });
         </script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     </body>
 
 </html>
