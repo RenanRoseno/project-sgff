@@ -4,9 +4,11 @@ import com.spring.sgff.models.Cargo;
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.models.Usuario;
+import com.spring.sgff.models.UsuariosRoles;
 import com.spring.sgff.service.CargoService;
 import com.spring.sgff.service.PontoService;
 import com.spring.sgff.service.SgffService;
+import com.spring.sgff.service.UsuariosRolesService;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
@@ -45,6 +47,9 @@ public class SgffController {
     @Autowired
     private ErrorsController errorsController;
 
+    @Autowired
+    private UsuariosRolesService urService;
+
     // Rota de que contém a lista de todos os funcionários
     @RequestMapping(value = "/funcionarios", method = RequestMethod.GET)
     public ModelAndView getFuncionarios() {
@@ -65,7 +70,7 @@ public class SgffController {
 
         Funcionarios funcionario = sgffservice.findById(id);
         List<Cargo> cargos = cargoService.findAll();
-        
+
         mv.addObject("cargos", cargos);
         mv.addObject("funcionario", funcionario);
 
@@ -77,18 +82,18 @@ public class SgffController {
     public ModelAndView getFuncionarioForm() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("FuncionarioForm");
-        
+
         List<Cargo> cargos = cargoService.findAll();
         mv.addObject("cargos", cargos);
-        
+
         return mv;
     }
 
     // Cria um novo funcionário e um novo usuário no banco
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
     public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result,
-            RedirectAttributes attributes) {
-
+            RedirectAttributes attributes, @RequestParam(name="tipo") String tipo ){
+        System.out.println(tipo);
         String senhaEn = new BCryptPasswordEncoder().encode(funcionario.getSenha());
         funcionario.setSenha(senhaEn);
 
@@ -103,19 +108,31 @@ public class SgffController {
         long id = funcionario.getId();
         String login = funcionario.getCpf();
         Usuario newUser = new Usuario(login, id, password);
+
+        UsuariosRoles ur = new UsuariosRoles();
+        ur.setUsuario_id(login);
+        ur.setRole_id(tipo);
+
+        
         userController.saveUsuario(newUser);
+        urService.save(ur);
         return "redirect:/funcionarios/";
     }
-
+ 
+      
     // Alterando os dados de um funcionário
     @RequestMapping(value = "/funcionarios/{id}", method = RequestMethod.POST)
-    public String requestMethodName(@Valid Funcionarios funcionario) {
+    public String requestMethodName(@Valid Funcionarios funcionario, @RequestParam(name = "tipo") String tipo) {
         Funcionarios updatedEmployee = sgffservice.updateFuncionarios(funcionario);
 
         String password = updatedEmployee.getSenha();
         long id = updatedEmployee.getId();
         String login = updatedEmployee.getCpf();
         Usuario newUser = new Usuario(login, id, password);
+        
+        UsuariosRoles ur = urService.findByLogin(login);
+        ur.setRole_id(tipo);
+        urService.save(ur);
         
         userController.saveUsuario(newUser);
         return "redirect:/funcionarios/";
@@ -174,7 +191,7 @@ public class SgffController {
 
         Funcionarios f1 = sgffservice.findByCpf(nome);
         List<Cargo> cargos = cargoService.findAll();
-        
+
         mv.addObject("cargos", cargos);
         mv.addObject("funcionario", f1);
 

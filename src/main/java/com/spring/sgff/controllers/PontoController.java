@@ -44,26 +44,43 @@ public class PontoController {
             String minutoS = (hora < 10) ? "0" + Integer.toString(min) : Integer.toString(min);
             String segundoS = (hora < 10) ? "0" + Integer.toString(seg) : Integer.toString(seg);
 
-            ponto.setData(LocalDate.now());
+            Ponto p = pontoService.getPontoFuncionario(funcionario.getId(), LocalDate.now());
 
-            if (hora < 17) {
-                ponto.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
-                ponto.setHorarioSaida("-");
+            if (p == null) {
+                ponto.setData(LocalDate.now());
+
+                if (hora < 12) {
+                    ponto.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
+                    ponto.setHorarioSaida("-");
+                    ponto.setFalta(0);
+                } else {
+                    ponto.setHorarioEntrada("-");
+                    ponto.setHorarioSaida("-");
+                    ponto.setFalta(1);
+                }
+
+                ponto.setId_funcionario(funcionario.getId());
+
+                pontoService.save(ponto);
+                attributes.addFlashAttribute("mensagem", "Ok");
+                return "redirect:/";
+
             } else {
-                ponto.setHorarioEntrada(horaS + ":" + minutoS + ":" + segundoS);
-                ponto.setHorarioSaida(horaS + ":" + minutoS + ":" + segundoS);
+                if (p.getHorarioSaida().equals("-") && (hora >= 12)) {
+                    p.setHorarioSaida(horaS + ":" + minutoS + ":" + segundoS);
+                    pontoService.save(p);
+                } else {
+                    attributes.addFlashAttribute("mensagem", "Não foi possivel registrar o ponto");
+                    return "redirect:/";
+                }
             }
 
-            ponto.setId_funcionario(funcionario.getId());
-            ponto.setFalta(0);
-
-            pontoService.save(ponto);
             attributes.addFlashAttribute("mensagem", "Ok");
             return "redirect:/";
         }
 
         attributes.addFlashAttribute("mensagem", "Funcionário inválido");
-        return "redirect:/funcionarios";
+        return "redirect:/";
     }
 
     // Ver todos pontos
@@ -113,7 +130,7 @@ public class PontoController {
 
         List<Ponto> pontos = pontoService.getPontosFuncionario(id_func, dateI, dateF);
         mv.addObject("pontos", pontos);
-        
+
         return mv;
     }
 

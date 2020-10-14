@@ -13,4 +13,5 @@ public interface PontoService {
     
     List<Ponto> getPontosFuncionario(long id_funcionario, LocalDate dataI, LocalDate dataF);
 
+    Ponto getPontoFuncionario(long id_funcionario, LocalDate dataI);
 }

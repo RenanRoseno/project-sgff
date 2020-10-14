@@ -34,4 +34,9 @@ public class PontoServiceImpl implements PontoService {
         return pontoRepository.getPontosFuncionario(id_funcionario, dataI, dataF);
     }
 
+    @Override
+    public Ponto getPontoFuncionario(long id_funcionario, LocalDate dataI) {
+        return pontoRepository.getPontoFuncionario(id_funcionario, dataI);
+    }
+
 }
