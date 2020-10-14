@@ -1,19 +1,19 @@
 <html xmlns:th="http://thymeleaf.org">
 
-<head>
-    <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script type="text/javascript" src="/webapp/js/1.5.2.js"></script>
-    <script type="text/javascript" src="/webapp/js/jquery.maskedinput-1.3.min.js"></script>
-</head>
+        <script type="text/javascript" src="/webapp/js/1.5.2.js"></script>
+        <script type="text/javascript" src="/webapp/js/jquery.maskedinput-1.3.min.js"></script>
+    </head>
 
-<body>
-   <header>
+    <body>
+        <header>
             <!-- As a heading -->
             <nav class="navbar navbar-dark bg-dark">
                 <a href="/funcionarios/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
@@ -53,94 +53,116 @@
                         <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
                     </div>
                 </div>
-                
+
                 <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
             </nav>
         </header>
 
 
-    <section>
-        <div class="container" style="width:35%; padding-bottom:30px;">
-            <center>
-                <h2>Detalhes de Funcionário</h2>
-            </center>
-            <th:block th:include="mensagemValidacao"></th:block>
-            <div>
-                <form method="POST">
-                    <div class="form group">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" th:value="${funcionario.nome}" name="nome" id="nome"
-                            placeholder="nome">
-                    </div>
-                    <div class="form group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" th:value="${funcionario.email}" name="email" id="email"
-                            placeholder="email">
-                    </div>
+        <section>
+            <div class="container" style="width:35%; padding-bottom:30px;">
+                <center><br>
+                    <h2>Detalhes de Funcionário</h2>
+                </center>
+                <th:block th:include="mensagemValidacao"></th:block>
+                <div>
+                    <form method="POST">
+                        <div class="form group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" th:value="${funcionario.nome}" name="nome" id="nome"
+                                   placeholder="nome">
+                        </div>
+                        <div class="form group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" th:value="${funcionario.email}" name="email" id="email"
+                                   placeholder="email">
+                        </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form group">
-                                <label for="rg">RG</label>
-                                <input type="text" class="form-control" th:value="${funcionario.rg}" name="rg"
-                                    placeholder="rg">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="rg">RG</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.rg}" name="rg"
+                                           placeholder="rg">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.cpf}" name="cpf"
+                                           placeholder="cpf" id="cpf">
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form group">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" th:value="${funcionario.cpf}" name="cpf"
-                                    placeholder="cpf" id="cpf">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cargo">Cargo</label>
+                                    <select class="form-control" name="cargo">
+                                        <option
+                                            th:each="cargo : ${cargos}"
+                                            th:value="${cargo.id}"
+                                            th:text="${cargo.nome}"
+                                            th:selected="${cargo.id == funcionario.cargo}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form group">
+                                    <label for="cargo">Telefone</label>
+                                    <input type="text" class="form-control" th:value="${funcionario.telefone}"
+                                           name="telefone" placeholder="" id="telefone">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form group">
-                                <label for="cargo">Cargo</label>
-                                <input type="text" class="form-control" th:value="${funcionario.cargo}" name="cargo"
-                                    placeholder="cargo" id="cargo">
+                        <br>
+                        <div class="row">
+                            <div class="col">
+
+                                <label for="dataA">Data de Admissão</label>
+                                <input type="date" class="form-control" name="dataAdmissao"
+                                       th:value="${funcionario.dataAdmissao}" id="dataAdmissao" placeholder="dataAdmissao">
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form group">
-                                <label for="cargo">Telefone</label>
-                                <input type="text" class="form-control" th:value="${funcionario.telefone}"
-                                    name="telefone" placeholder="" id="telefone">
+                            <div class="col">
+                                <label for="dataA">Senha</label>
+                                <input type="password" class="form-control" name="senha">
                             </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
+                        </div><br>
 
-                            <label for="dataA">Data de Admissão</label>
-                            <input type="date" class="form-control" name="dataAdmissao"
-                                th:value="${funcionario.dataAdmissao}" id="dataAdmissao" placeholder="dataAdmissao">
-                        </div>
-                        <div class="col">
-                            <label for="dataA">Senha</label>
-                            <input type="password" class="form-control" name="senha">
-                        </div>
-                    </div><br>
+                        <center><button type="submit" class="btn btn-primary"
+                                        style="background-color:DarkSlateGray; border:none; height: 50px;">Editar</button>
+                            <a href="/funcionarios"><button class="btn btn-danger" style="height:50px;"
+                                                            type="button">Cancelar</button></a></center>
 
-                    <center><button type="submit" class="btn btn-primary"
-                            style="background-color:DarkSlateGray; border:none; height: 50px;">Editar</button>
-                        <a href="/funcionarios"><button class="btn btn-danger" style="height:50px;"
-                                type="button">Cancelar</button></a></center>
+                    </form>
+                </div>
 
-                </form>
             </div>
+        </section
 
-        </div>
-    </section>
-    <script>
-        jQuery(function ($) {
-            $("#cpf").mask("999.999.999-99");
-            $("#telefone").mask("(99)99999-9999");
-        });
-    </script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-0 text-light">
+
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-1 bg-dark">
+                <p style="font-family: Century Gothic; font-size: 14px;letter-spacing: 
+                   2px;">&reg; 2020 JRM - Technologies</p>
+             
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+        <script>
+            jQuery(function ($) {
+                $("#cpf").mask("999.999.999-99");
+                $("#telefone").mask("(99)99999-9999");
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -149,6 +171,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
+    </body>
 
 </html>

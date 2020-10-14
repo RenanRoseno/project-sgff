@@ -53,7 +53,7 @@
                         <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
                     </div>
                 </div>
-                
+
                 <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
             </nav>
         </header>
@@ -98,8 +98,14 @@
                             <div class="col">
                                 <div class="form group">
                                     <label for="cargo">Cargo</label>
-                                    <input type="text" class="form-control" th:value="${funcionario.cargo}" name="cargo"
-                                           placeholder="cargo" id="cargo" disabled>
+                                    <select class="form-control" name="cargo">
+                                        <option
+                                            th:each="cargo : ${cargos}"
+                                            th:value="${cargo.id}"
+                                            th:text="${cargo.nome}"
+                                            th:selected="${cargo.id == funcionario.cargo}">
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">
@@ -121,19 +127,32 @@
                         </div><br>
 
                         <center><a href="/main/"><button type="button" class="btn btn-primary"
-                                                                style="background-color:DarkSlateGray; border:none; height: 50px;">Voltar</button></a>
+                                                         style="background-color:DarkSlateGray; border:none; height: 50px;">Voltar</button></a>
                     </form>
                 </div>
 
             </div>
         </section>
+              <footer class="page-footer font-small blue pt-0 text-light">
+
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-1 bg-dark">
+                <p style="font-family: Century Gothic; font-size: 14px;letter-spacing: 
+                   2px;">&reg; 2020 JRM - Technologies</p>
+             
+            </div>
+            <!-- Copyright -->
+
+        </footer>
         <script>
             jQuery(function ($) {
                 $("#cpf").mask("999.999.999-99");
                 $("#telefone").mask("(99)99999-9999");
             });
         </script>
-          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

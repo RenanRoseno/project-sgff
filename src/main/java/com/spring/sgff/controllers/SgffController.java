@@ -1,5 +1,6 @@
 package com.spring.sgff.controllers;
 
+import com.spring.sgff.models.Cargo;
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.models.Usuario;
@@ -63,6 +64,9 @@ public class SgffController {
         mv.setViewName("funcionarioDetails");
 
         Funcionarios funcionario = sgffservice.findById(id);
+        List<Cargo> cargos = cargoService.findAll();
+        
+        mv.addObject("cargos", cargos);
         mv.addObject("funcionario", funcionario);
 
         return mv;
@@ -70,8 +74,14 @@ public class SgffController {
 
     // Chamando a página de formulário para add um novo funcionário
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.GET)
-    public String getFuncionarioForm() {
-        return "FuncionarioForm";
+    public ModelAndView getFuncionarioForm() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("FuncionarioForm");
+        
+        List<Cargo> cargos = cargoService.findAll();
+        mv.addObject("cargos", cargos);
+        
+        return mv;
     }
 
     // Cria um novo funcionário e um novo usuário no banco
@@ -106,7 +116,7 @@ public class SgffController {
         long id = updatedEmployee.getId();
         String login = updatedEmployee.getCpf();
         Usuario newUser = new Usuario(login, id, password);
-
+        
         userController.saveUsuario(newUser);
         return "redirect:/funcionarios/";
     }
@@ -163,6 +173,9 @@ public class SgffController {
         String nome = SecurityContextHolder.getContext().getAuthentication().getName();
 
         Funcionarios f1 = sgffservice.findByCpf(nome);
+        List<Cargo> cargos = cargoService.findAll();
+        
+        mv.addObject("cargos", cargos);
         mv.addObject("funcionario", f1);
 
         return mv;

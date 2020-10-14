@@ -65,10 +65,22 @@ and open the template in the editor.
         </header>
     <section>
         <div class="container" style="width:90%; padding-bottom:30px;"><br>
-            <form class="form form-inline col-md-3 offset-md-9">
-                <select class="form-control form-group">
-                    <option value="1">Fevereiro</option>
-                </select>&nbsp;
+            <form class="form form-inline col-md-3 offset-md-9" action="/pontosPesquisar/" method="GET">
+                 <select class="form-control form-group" name="mes">
+                    <option disabled selected>Mês</option>
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>     
+                </select>&nbsp;;
                 <button type="submit" class="btn btn-success"
                     style="background-color:DarkSlateGray; border:none; width: 50px;"><i
                         class="fa fa-search"></i></button>

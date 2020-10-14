@@ -94,4 +94,60 @@ public class PontoController {
         mv.addObject("pontos", pontos);
         return mv;
     }
+
+    @RequestMapping(value = "/pontosPesquisar/", method = RequestMethod.GET)
+    public ModelAndView pesquisarPontos(@RequestParam(name = "mes") String mes) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pontosDetails");
+
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String dataIn = Integer.toString(year) + "-" + mes + "-" + "01";
+        String dataFi = Integer.toString(year) + "-" + mes + "-" + "31";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateI = LocalDate.parse(dataIn, formatter);
+        LocalDate dateF = LocalDate.parse(dataFi, formatter);
+
+        String cpf = SecurityContextHolder.getContext().getAuthentication().getName();
+        long id_func = sgffservice.findByCpf(cpf).getId();
+
+        List<Ponto> pontos = pontoService.getPontosFuncionario(id_func, dateI, dateF);
+        mv.addObject("pontos", pontos);
+        
+        return mv;
+    }
+
+    @RequestMapping(value = "/pontosFuncionario/", method = RequestMethod.GET)
+    public ModelAndView getPontosFuncionario() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pontoFuncionario");
+
+        List<Funcionarios> funcionarios = sgffservice.findAll();
+        List<Ponto> pontos = pontoService.findAll();
+        mv.addObject("pontos", pontos);
+        mv.addObject("funcionarios", funcionarios);
+        return mv;
+    }
+
+    @RequestMapping(value = "/PontosPesquisarF/", method = RequestMethod.GET)
+    public ModelAndView pesquisarPontosFuncionario(@RequestParam(name = "funcionario") long id, @RequestParam String mes) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pontoFuncionario");
+
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String dataIn = Integer.toString(year) + "-" + mes + "-" + "01";
+        String dataFi = Integer.toString(year) + "-" + mes + "-" + "31";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateI = LocalDate.parse(dataIn, formatter);
+        LocalDate dateF = LocalDate.parse(dataFi, formatter);
+
+        List<Ponto> pontos = pontoService.getPontosFuncionario(id, dateI, dateF);
+        List<Funcionarios> funcionarios = sgffservice.findAll();
+
+        mv.addObject("pontos", pontos);
+        mv.addObject("funcionarios", funcionarios);
+
+        return mv;
+    }
 }
