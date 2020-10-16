@@ -2,23 +2,16 @@ package com.spring.sgff.controllers;
 
 import com.spring.sgff.models.Cargo;
 import com.spring.sgff.models.Funcionarios;
-import com.spring.sgff.models.Ponto;
 import com.spring.sgff.models.Usuario;
 import com.spring.sgff.models.UsuariosRoles;
 import com.spring.sgff.service.CargoService;
 import com.spring.sgff.service.PontoService;
 import com.spring.sgff.service.SgffService;
 import com.spring.sgff.service.UsuariosRolesService;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,9 +36,6 @@ public class SgffController {
 
     @Autowired
     private PontoService pontoService;
-
-    @Autowired
-    private ErrorsController errorsController;
 
     @Autowired
     private UsuariosRolesService urService;
@@ -91,8 +81,8 @@ public class SgffController {
 
     // Cria um novo funcionário e um novo usuário no banco
     @RequestMapping(value = "/newfuncionario/", method = RequestMethod.POST)
-    public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result,
-            RedirectAttributes attributes, @RequestParam(name="tipo") String tipo ){
+    public String saveFuncionario(@Valid Funcionarios funcionario, BindingResult result, RedirectAttributes attributes,
+            @RequestParam(name = "tipo") String tipo) {
         System.out.println(tipo);
         String senhaEn = new BCryptPasswordEncoder().encode(funcionario.getSenha());
         funcionario.setSenha(senhaEn);
@@ -113,13 +103,11 @@ public class SgffController {
         ur.setUsuario_id(login);
         ur.setRole_id(tipo);
 
-        
         userController.saveUsuario(newUser);
         urService.save(ur);
         return "redirect:/funcionarios/";
     }
- 
-      
+
     // Alterando os dados de um funcionário
     @RequestMapping(value = "/funcionarios/{id}", method = RequestMethod.POST)
     public String requestMethodName(@Valid Funcionarios funcionario, @RequestParam(name = "tipo") String tipo) {
@@ -129,11 +117,11 @@ public class SgffController {
         long id = updatedEmployee.getId();
         String login = updatedEmployee.getCpf();
         Usuario newUser = new Usuario(login, id, password);
-        
+
         UsuariosRoles ur = urService.findByLogin(login);
         ur.setRole_id(tipo);
         urService.save(ur);
-        
+
         userController.saveUsuario(newUser);
         return "redirect:/funcionarios/";
     }

@@ -3,7 +3,6 @@ package com.spring.sgff.controllers;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
-
 import com.spring.sgff.models.Funcionarios;
 import com.spring.sgff.models.Ponto;
 import com.spring.sgff.service.PontoService;
@@ -147,7 +146,8 @@ public class PontoController {
     }
 
     @RequestMapping(value = "/PontosPesquisarF/", method = RequestMethod.GET)
-    public ModelAndView pesquisarPontosFuncionario(@RequestParam(name = "funcionario") long id, @RequestParam String mes) {
+    public ModelAndView pesquisarPontosFuncionario(@RequestParam(name = "funcionario") long id,
+            @RequestParam String mes) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pontoFuncionario");
 

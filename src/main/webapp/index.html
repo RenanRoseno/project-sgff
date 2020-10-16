@@ -73,7 +73,7 @@
                 <form method="GET" action="/registrarponto/">
                     <input type="text" id="saudacao" value="Boa Tarde" disabled><br>
                     <input type="text" id="rel" disabled><br><br>
-                    <input type="text" class="form-control col-md-4" name="parametro" id="cpf"
+                    <input type="text" class="form-control col-md-4" name="parametro" id="parametro"
                         placeholder="Insira seu CPF"><br>
                     <button type="submit" class="btn btn-primary"
                         style="background-color:DarkSlateGray; border:none; height: 50px;"> Registrar ponto </button>
@@ -88,14 +88,13 @@
             <div class="footer-copyright text-center py-1 bg-dark">
                 <p style="font-family: Century Gothic; font-size: 14px;letter-spacing: 
                    2px;">&reg; 2020 JRM - Technologies</p>
-
             </div>
             <!-- Copyright -->
 
         </footer>
         <script>
             jQuery(function ($) {
-                $("#cpf").mask("999.999.999-99");
+                $("#parametro").mask("999.999.999-99");
             });
         </script>
 
