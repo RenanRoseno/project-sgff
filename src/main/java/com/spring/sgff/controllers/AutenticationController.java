@@ -14,6 +14,12 @@ public class AutenticationController {
         return "login";
     }
 
+    @RequestMapping(value = "/login?error=true", method = RequestMethod.GET)
+    public String loginError() {
+        System.out.println("Erro ao logar");
+        return "login";
+    }
+
     // Logout session
     @RequestMapping("logout")
     public String logout(HttpSession session) {

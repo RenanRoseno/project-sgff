@@ -27,5 +27,4 @@ public class UsuarioServiceImpl implements UserDetailsService {
 
         return new User(usuario.getLogin(), usuario.getSenha(), true, true, true, true, usuario.getAuthorities());
     }
-
 }

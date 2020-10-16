@@ -14,8 +14,10 @@
             padding-bottom:30px;
             background-color: white; 
             border-radius: 20px;padding: 100px;">
-
             <form th:action="@{/login}" method="post" class="form">
+                <div class="alert alert-danger text-center" th:if="${param.error}">
+                    Login ou senha inválidos
+                </div>
                 <div class="form-group"><label for="username">
                         <h5 style="letter-spacing:5px;"> LOGIN </h5>
                     </label> <input type="text" name="username" class="form-control" id="username"></div>

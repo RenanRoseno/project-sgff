@@ -33,15 +33,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().
-                antMatchers(AUTH_LIST).permitAll().
-                antMatchers(HttpMethod.GET, "/newfuncionario/").hasRole("ADMIN").
-                antMatchers(HttpMethod.POST, "/newfuncionario/").hasRole("ADMIN").
-                antMatchers(HttpMethod.GET, "/funcionarios/").hasRole("ADMIN").
-                antMatchers(HttpMethod.GET, "/newCargo/").hasRole("ADMIN").
-                antMatchers(HttpMethod.GET, "/pontos/").hasRole("USER").
-                anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll().and().logout()
+        http.csrf().disable().authorizeRequests().antMatchers(AUTH_LIST).permitAll()
+                .antMatchers(HttpMethod.GET, "/newfuncionario/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/newfuncionario/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/funcionarios/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/newCargo/").hasRole("ADMIN").antMatchers(HttpMethod.GET, "/pontos/")
+                .hasRole("USER").anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
+                .failureUrl("/login?error=true").and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 
