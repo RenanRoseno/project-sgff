@@ -18,55 +18,60 @@ and open the template in the editor.
 
 </head>
 
-    <body>
-         <header>
-            <!-- As a heading -->
-            <nav class="navbar navbar-dark bg-dark">
-                <a href="/main/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
-                    Frequência</a>
+<body>
+    <header>
+        <!-- As a heading -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="/main/" style="font-color:white;" class="navbar-brand logo">SGFF- Sistema de Gerenciamento de
+                Funcionários e
+                Frequência</a>
 
 
-                <div class="dropdown offset-md-3">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Relatórios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>
-                        <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
-                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por funcionário</button></a>
-                    </div>
+            <div class="dropdown offset-md-3">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relatórios
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
+                    <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por
+                            funcionário</button></a>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Funcionários
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>  
-                        <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
-                        <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar Funcionários</button></a>
-                    </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Funcionários
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
+                    <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar
+                            Funcionários</button></a>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cargos
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>  
-                        <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item" type="button">Novo cargo</button></a>
-                        <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
-                    </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cargos
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/newCargo/" class="navbar-brand"
+                        style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item"
+                            type="button">Novo cargo</button></a>
+                    <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
                 </div>
-                
-                <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
-            </nav>
-        </header>
+            </div>
+
+            <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+        </nav>
+    </header>
     <section>
         <div class="container" style="width:90%; padding-bottom:30px;"><br>
             <form class="form form-inline col-md-3 offset-md-9" action="/pontosPesquisar/" method="GET">
-                 <select class="form-control form-group" name="mes">
+                <select class="form-control form-group" name="mes">
                     <option disabled selected>Mês</option>
                     <option value="01">Janeiro</option>
                     <option value="02">Fevereiro</option>
@@ -79,7 +84,7 @@ and open the template in the editor.
                     <option value="09">Setembro</option>
                     <option value="10">Outubro</option>
                     <option value="11">Novembro</option>
-                    <option value="12">Dezembro</option>     
+                    <option value="12">Dezembro</option>
                 </select>&nbsp;;
                 <button type="submit" class="btn btn-success"
                     style="background-color:DarkSlateGray; border:none; width: 50px;"><i

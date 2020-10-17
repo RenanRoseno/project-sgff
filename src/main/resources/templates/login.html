@@ -4,31 +4,94 @@
 
 <head>
     <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .logo {
+            font-family: Poppins !important;
+            font-size: 40px;
+            color: #f0f0f1 !important;
+            margin-left: 20px;
+        }
+
+        .main-content {
+            width: 45%;
+            padding-bottom: 30px;
+            margin-top: 60px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 100px;
+
+        }
+
+        .main-content h1 {
+            margin-top: -50px;
+            text-align: center;
+        }
+
+
+
+        .signIn {
+            width: 100%;
+            background-color: DarkSlateGray;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .signIn:hover {
+            background-color: #444;
+        }
+
+
+        .fi {
+            width: 40px;
+            height: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f0f0f1;
+            font-size: 15px;
+        }
+
+        a button {
+            cursor: pointer;
+        }
+
+        body {
+            font: 400 15px Poppins;
+            background-color: #f0f0f1;
+        }
+    </style>
+
+
 </head>
 
 <body>
-    <center><br><br><br>
-        <div class="container" style="width:30%; 
-            padding-bottom:30px;
-            background-color: white; 
-            border-radius: 20px;padding: 100px;">
-            <form th:action="@{/login}" method="post" class="form">
-                <div class="alert alert-danger text-center" th:if="${param.error}">
-                    Login ou senha inválidos
-                </div>
-                <div class="form-group"><label for="username">
-                        <h5 style="letter-spacing:5px;"> LOGIN </h5>
-                    </label> <input type="text" name="username" class="form-control" id="username"></div>
-                <div class="form-group"><label for="password">
-                        <h5 style="letter-spacing:5px;">SENHA</h5>
-                    </label><input type="password" name="password" id="password" class="form-control"> </div><br>
-                <div class="form-group"><button type="submit" class="btn btn-primary btn-lg"
-                        style="background-color:DarkSlateGray; border:none; height: 50px;width: 200px;border-radius: 10px;">Entrar</button>
-                </div>
-            </form>
-        </div>
+    <div class="container main-content">
+        <h1>SGFF <i data-feather="check-square" class="fi"></i></h1>
+        <form th:action="@{/login}" method="post" class="form">
+            <div class="alert alert-danger text-center" th:if="${param.error}">
+                Login ou senha inválidos
+            </div>
+            <div class="form-group"><label for="username">
+                </label> <input type="text" name="username" placeholder="Login" class="form-control" id="username">
+            </div>
+            <div class="form-group"><label for="password">
+                </label><input type="password" name="password" placeholder="Senha" id="password" class="form-control">
+            </div><br>
+            <div class="form-group"><button type="submit" class="btn btn-primary btn-lg signIn" style="">Entrar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 
 </html>

@@ -94,7 +94,7 @@ ALTER TABLE public.hibernate_sequence OWNER TO postgres;
 -- Data for Name: funcionarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.funcionarios (id, cargo, cpf, data_admissao, email, rg, nome) VALUES (59, 1, '000000', '2020-08-28', 'rosenorenan@gmail.com', '98347892', 'Renan Roseno');
+INSERT INTO public.funcionarios (id, cargo, cpf, data_admissao, email, rg, nome, telefone, senha) VALUES (68, 1, 'admin', '2020-08-28', 'rosenorenan@gmail.com', '98347892', 'Renan Roseno', '23232131','123');
 INSERT INTO public.funcionarios (id, cargo, cpf, data_admissao, email, rg, nome) VALUES (60, 2, '01001000000', '2020-08-28', 'rosenorenan@gmail.com', '11117892', 'Roberto Nogueira');
 INSERT INTO public.funcionarios (id, cargo, cpf, data_admissao, email, rg, nome) VALUES (62, 1, '23424', '2002-03-03', 'sdfsf@gmail.com', 'asdasd', 'asdasd');
 

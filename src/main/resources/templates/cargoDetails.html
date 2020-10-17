@@ -1,119 +1,186 @@
 <html xmlns:th="http://thymeleaf.org">
 
-    <head>
-        <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>SGFF - Sistema Gerenciamento de Funcionários e Frequência</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="/webapp/js/1.5.2.js"></script>
+    <script type="text/javascript" src="/webapp/js/jquery.maskedinput-1.3.min.js"></script>
+    <style>
+        .logo {
+            font-family: Poppins !important;
+            font-size: 40px;
+            color: #f0f0f1 !important;
+            margin-left: 20px;
+        }
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        .main-content {
+            width: 45%;
+            padding-bottom: 30px;
+            margin-top: 60px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 100px;
 
-        <script type="text/javascript" src="/webapp/js/1.5.2.js"></script>
-        <script type="text/javascript" src="/webapp/js/jquery.maskedinput-1.3.min.js"></script>
-    </head>
+        }
 
-    <body>
-        <header>
-            <!-- As a heading -->
-            <nav class="navbar navbar-dark bg-dark">
-                <a href="/main/" style="font-color:white;" class="navbar-brand">SGFF- Sistema de Gerenciamento de Funcionários e
-                    Frequência</a>
+        .main-content h1 {
+            margin-top: -50px;
+            text-align: center;
+        }
 
 
-                <div class="dropdown offset-md-3">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Relatórios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>
-                        <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
-                        <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por funcionário</button></a>
-                    </div>
+
+        .signIn {
+            width: 100%;
+            background-color: DarkSlateGray;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .signIn:hover {
+            background-color: #444;
+        }
+
+        .footer {
+            margin-top: 24.6vh;
+        }
+
+
+        .fi {
+            width: 40px;
+            height: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f0f0f1;
+            font-size: 15px;
+        }
+
+        a button {
+            cursor: pointer;
+        }
+
+        body {
+            font: 400 15px Poppins;
+            background-color: #f0f0f1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- As a heading -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="/main/" style="font-color:white;" class="navbar-brand logo">
+                SGFF <img th:src="@{/check-square.svg}" /></a>
+
+
+            <div class="dropdown offset-md-6">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relatórios
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/pontos/"><button class="dropdown-item" type="button">Registro de pontos</button></a>
+                    <a href="/pontosFuncionario/"><button class="dropdown-item" type="button">Pontos por
+                            funcionário</button></a>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Funcionários
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>  
-                        <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
-                        <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar Funcionários</button></a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
-                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cargos
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button"></button>  
-                        <a href="/newCargo/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item" type="button">Novo cargo</button></a>
-                        <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
-                    </div>
-                </div>
-
-                <a href="/logout/" class="navbar-brand" style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
-            </nav>
-        </header>
-
-
-        <section>
-            <div class="container" style="width:35%; padding-bottom:30px;">
-                <center><br>
-                    <h2 style="margin-top: 20px;">Editar Cargo</h2>
-                </center>
-                <th:block th:include=" mensagemValidacao">
-                </th:block>
-                <div>
-                    <form method="POST">
-                        <div class="form group">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" name="nome" th:value="${cargo.nome}">
-                        </div>
-                        <div class="form group">
-                            <label for="descricao">Descricao</label>
-                            <input type="text" class="form-control" style=" height:70px;" name="descricao" th:value="${cargo.descricao}">
-                        </div>
-                        <center><button type="submit" class="btn btn-primary"
-                                        style="background-color:DarkSlateGray; border:none; height: 50px; margin-top: 20px">Confirmar</button>
-                            <a href="/cargos"><button class="btn btn-danger" style="height:50px; margin-top: 20px"
-                                                      type="button">Cancelar</button></a>
-                        </center>
-                    </form>
-                </div>
-
             </div>
-        </section><br><br><br><br><br><br><br><br>
-        <footer class="page-footer font-small blue pt-0 text-light">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Funcionários
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/perfil/"><button class="dropdown-item" type="button">Perfil</button></a>
+                    <a href="/funcionarios/"><button class="dropdown-item" type="button">Listar
+                            Funcionários</button></a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" style="background:none;border:none" type="button"
+                    id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cargos
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button"></button>
+                    <a href="/newCargo/" class="navbar-brand"
+                        style="decoration:none;font-color:white; font-size: 15px;"><button class="dropdown-item"
+                            type="button">Novo cargo</button></a>
+                    <a href="/cargos/"><button class="dropdown-item" type="button">Listar Cargos</button></a>
+                </div>
+            </div>
 
-            <!-- Footer Links -->
+            <a href="/logout/" class="btn btn-danger"
+                style="decoration:none;font-color:white; font-size: 15px;">Sair</a>
+        </nav>
+    </header>
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-1 bg-dark">
-                <p style="font-family: Century Gothic; font-size: 14px;letter-spacing: 
+
+    <section>
+        <div class="container" style="width:35%; padding-bottom:30px;">
+            <center><br>
+                <h2 style="margin-top: 20px;">Editar Cargo</h2>
+            </center>
+            <th:block th:include=" mensagemValidacao">
+            </th:block>
+            <div>
+                <form method="POST">
+                    <div class="form group">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" name="nome" th:value="${cargo.nome}">
+                    </div>
+                    <div class="form group">
+                        <label for="descricao">Descricao</label>
+                        <input type="text" class="form-control" style=" height:70px;" name="descricao"
+                            th:value="${cargo.descricao}">
+                    </div>
+                    <center><button type="submit" class="btn btn-primary"
+                            style="background-color:DarkSlateGray; border:none; height: 50px; margin-top: 20px">Confirmar</button>
+                        <a href="/cargos"><button class="btn btn-danger" style="height:50px; margin-top: 20px"
+                                type="button">Cancelar</button></a>
+                    </center>
+                </form>
+            </div>
+
+        </div>
+    </section><br><br><br><br><br><br><br><br>
+    <footer class="page-footer font-small blue pt-0 text-light">
+
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-1 bg-dark">
+            <p style="font-family: Century Gothic; font-size: 14px;letter-spacing: 
                    2px;">&reg; 2020 JRM - Technologies</p>
 
-            </div>
-            <!-- Copyright -->
+        </div>
+        <!-- Copyright -->
 
-        </footer>
-        <script>
-            jQuery(function ($) {
-                $("#cpf").mask("999.999.999-99");
-                $("#telefone").mask("(99)99999-9999");
-            });
-        </script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    </footer>
+    <script>
+        jQuery(function ($) {
+            $("#cpf").mask("999.999.999-99");
+            $("#telefone").mask("(99)99999-9999");
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    </body>
+</body>
 
 </html>
