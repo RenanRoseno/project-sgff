@@ -7,8 +7,8 @@ SGFF é um sistema para gerenciamento de frequência de funcionários mostrando 
 ### Funcionalidades 
 - [ x ] CRUD de funcionários
 - [ x ] Templates das telas principais 
-- [ - ] Relacionamento entre tabelas do BD
-- [ - ] Listagem dos pontos (frequências de funcionários)
+- [ X ] Relacionamento entre tabelas do BD
+- [ X ] Listagem dos pontos (frequências de funcionários)
 
 
 ### Tecnologias
